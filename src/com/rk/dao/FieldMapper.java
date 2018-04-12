@@ -17,7 +17,10 @@ public interface FieldMapper {
     int insertSelective(Field record);
 
     List<Field> selectByExample(FieldExample example);
-
+    
+    
+    List<Field> selectAll();
+    
     Field selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Field record, @Param("example") FieldExample example);
@@ -27,4 +30,8 @@ public interface FieldMapper {
     int updateByPrimaryKeySelective(Field record);
 
     int updateByPrimaryKey(Field record);
+    
+    
+
+	
 }

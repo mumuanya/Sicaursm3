@@ -25,6 +25,7 @@ public class UserController {
 	 * 用户登录方法
 	 * @return
 	 */
+	@RequestMapping("/login")
 	public String userlogin() {
 		return "/user/login";
 		
@@ -32,10 +33,21 @@ public class UserController {
 	//登录动作
 	@ResponseBody
 	@RequestMapping(value="loginin",method=RequestMethod.POST)
-	public String loginin(@RequestParam("account")String account,@RequestParam("password")String password) {
-		
-		return null;
-		
+	public String loginin(@RequestParam("account")String account,@RequestParam("password")String password,HttpSession session) {
+		//通过userService直接登录
+				User user = userService.login(account, password);
+				//按照userService是否登录成功进行其它操作(session注入值,返回登录成功,判断用户是否是普通用户)
+				if(user != null && user.getType() != 0) {
+					//非普通用户角色
+					return AdminLoginData.noAccount("role error");
+					
+				}else if(user != null && user.getType() == 0) {
+					//普通用户角色
+					session.setAttribute("user", user);
+					return AdminLoginData.success("login success");
+				}
+				return AdminLoginData.incorrectPassword("incorrect password");
+
 }
 	
 	/**
@@ -53,6 +65,8 @@ public class UserController {
 				mdv.setViewName("/user/index");
 		         return mdv;
 	}
+     
+     
 	 
 
 }

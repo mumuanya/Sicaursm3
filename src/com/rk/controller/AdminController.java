@@ -51,7 +51,7 @@ public class AdminController {
 	}
 	
 	/**
-	 * 返回一个页面,页面携带数据
+	 * 返回管理员主页面,页面携带数据
 	 */
 	@RequestMapping("/index")
 	public ModelAndView toindex(HttpSession session) {
@@ -65,4 +65,60 @@ public class AdminController {
 		mdv.setViewName("/admin/index");
 		return mdv;
 	}
+	
+	/**
+	 * 返回管理员场地管理页面
+	 * @return
+	 */
+	@RequestMapping("/field")
+	public String tofield() {
+		return "/admin/field";
+	}
+	
+	/**
+	 * 返回管理员物品管理页面
+	 * @return
+	 */
+	@RequestMapping("/item")
+	public String toitem() {
+		return "/admin/item";
+	}
+	
+	/**
+	 * 返回申请查看页面
+	 * @return
+	 */
+	@RequestMapping("/apply")
+	public String toapply() {
+		return "/admin/apply";
+	}
+	/**
+	 * 返回已经审核通过的申请页面
+	 * @return
+	 */
+	@RequestMapping("/passedapply")
+	public String topassedapply() {
+		return "/admin/passedapply";
+	}
+	
+	/**
+	 * 返回正在归还申请页面
+	 * @return
+	 */
+	@RequestMapping("/returingapply ")
+	public String toriapply() {
+		return "/admin/returingapply";
+	}
+	/**
+	 * 返回用户申请记录页面
+	 * @return
+	 */
+	@RequestMapping("/applyrecord")
+	public String toapplyrecord() {
+		return "/admin/applyrecord";
+	}
+
+	
+	
+	
 }

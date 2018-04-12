@@ -1,6 +1,9 @@
 
 package com.rk.service;
 
+import java.util.List;
+
+import com.rk.model.Field;
 import com.rk.model.User;
 
 /** 
@@ -34,5 +37,7 @@ public interface AdminService {
 	 * @return 如果登录成功,返回一个用户,如果登录失败,返回<b>null</b>
 	 */
 	User login(String account, String password);
+
+	
 
 }
