@@ -23,7 +23,8 @@ public class UserPageInterceptor implements HandlerInterceptor {
 				HttpSession session = request.getSession();
 				if(session.getAttribute("user") == null) {
 					mdv.clear();
-					mdv.setViewName("/user/nologin");
+					mdv.addObject("msg", "ÄãÃ»ÓÐµÇÂ¼");
+					mdv.setViewName("/error1");
 				}
 	}
 
