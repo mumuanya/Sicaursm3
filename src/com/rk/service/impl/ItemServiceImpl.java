@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.rk.dao.ItemMapper;
 import com.rk.model.Item;
+import com.rk.service.ItemService;
 
 @Service("ItemService")
 public class ItemServiceImpl implements ItemService {
@@ -57,5 +58,20 @@ public class ItemServiceImpl implements ItemService {
 		return itemmapper.selectByPrimaryKey(id); 
 		
 	}
+
+	@Override
+	public List<Item> selectUnitems() {
+           
+		List<Item> item = null;
+		
+		try {
+			item = itemmapper.selectBystate(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return item;
+	}
+
 
 }

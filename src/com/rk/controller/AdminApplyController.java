@@ -77,8 +77,10 @@ public class AdminApplyController {
 	}
 	
 	/**
-	 *   查询所有已经归还的申请
+	 * 查询所有已经归还的申请
+	 * @return
 	 */
+	 
 	@ResponseBody
 	@RequestMapping(value="/returned",method = RequestMethod.GET)
 	public String getreturned() {
@@ -134,8 +136,11 @@ public class AdminApplyController {
 	}
 	
 	/**
-	 *    同意id为某值的申请的归还申请
+	 * 同意id为某值的申请的归还申请
+	 * @param id
+	 * @return
 	 */
+	 
 	@ResponseBody
 	@RequestMapping(value="/return/{id}",method = RequestMethod.PUT)
 	public String agreeReturn(@PathVariable("id") Integer id) {
@@ -151,7 +156,6 @@ public class AdminApplyController {
 	}
 	
 	
-
 
 
 }

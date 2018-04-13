@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>item</title>
+<title>apply</title>
 </head>
 <body>
-<h1>这是物品管理页面</h1>
+<h1>这是用户申请页面</h1>
 </body>
 </html>

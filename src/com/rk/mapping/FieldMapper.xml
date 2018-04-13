@@ -91,6 +91,17 @@
     from field
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectBystate" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from field
+    where state = #{state,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from field
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from field
     where id = #{id,jdbcType=INTEGER}

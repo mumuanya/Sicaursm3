@@ -1,4 +1,4 @@
-package com.rk.service.impl;
+package com.rk.service;
 
 import java.util.List;
 
@@ -15,6 +15,8 @@ public interface ItemService {
 	Integer update(Item record);
 
 	Item selectById(Integer id);
+
+	List<Item> selectUnitems();
 
 
 }

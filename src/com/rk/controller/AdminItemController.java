@@ -11,27 +11,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.rk.model.Field;
-import com.rk.service.FieldService;
+import com.rk.model.Item;
+import com.rk.service.ItemService;
 import com.rk.util.JsonResult;
 
-@RequestMapping(value="/admin/field")
+@RequestMapping(value="/admin/item")
 @Controller
-public class FieldController {
+public class AdminItemController {
 	
 	@Autowired
-	FieldService fieldservice;
-	
+	ItemService itemservice;
 	
 	/**
-	 * 返回所有场地信息
+	 * 返回所有物品信息
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(value="/all",method = RequestMethod.GET)
 	public String getAll() {
 		
-		List<Field> list = fieldservice.selectAll();
+		List<Item> list = itemservice.selectAll();
 		if(list != null) {
 			String jsonStr = JSON.toJSONString(list);
 			System.out.println("[LOG] json data:" + jsonStr);
@@ -43,7 +42,7 @@ public class FieldController {
 	
 	
 /**
- * 删除一个field记录
+ * 删除一个item记录
  * @param id
  * @return
  */
@@ -51,7 +50,7 @@ public class FieldController {
 	@RequestMapping(value="/delete/{id}",method = RequestMethod.DELETE)
 	public String deleterecord(@PathVariable("id") Integer id) {
 		
-	  Integer i = fieldservice.delete(id);
+	  Integer i = itemservice.delete(id);
 	  
 	  if(i==1)
 		return JsonResult.RS_TRUE;
@@ -59,16 +58,16 @@ public class FieldController {
 	}
 	
 	/**
-	 * 更新id为某值的field记录
+	 * 更新id为某值的item记录
 	 * @param id
 	 * @param record
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping(value="/update/{id}",method = RequestMethod.PUT)
-	public String updaterecord(@PathVariable("id") Integer id,@RequestParam("record")Field record) {
-		//Field field = fieldservice.selectById(id);
-	    Integer i = fieldservice.update(record);
+	public String updaterecord(@PathVariable("id") Integer id,@RequestParam("record")Item record) {
+		//Item item = itemservice.selectById(id);
+	    Integer i = itemservice.update(record);
 	  if(i==1)
 		return JsonResult.RS_TRUE;
 	  else return JsonResult.RS_FALSE;

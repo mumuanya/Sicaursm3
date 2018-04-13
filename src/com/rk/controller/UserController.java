@@ -106,10 +106,8 @@ public class UserController {
  	public String toApplied() {
  		
  		return "/user/applied";
- 		
  	}
  	
- 
  	/**
  	 * 返回申请历史(即已经归还的)页面
  	 * @return

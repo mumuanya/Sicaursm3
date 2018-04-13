@@ -18,8 +18,11 @@ public interface FieldMapper {
 
     List<Field> selectByExample(FieldExample example);
     
-    
+   
     List<Field> selectAll();
+    List<Field> selectBystate(Integer state);
+    
+  
     
     Field selectByPrimaryKey(Integer id);
 
@@ -30,6 +33,8 @@ public interface FieldMapper {
     int updateByPrimaryKeySelective(Field record);
 
     int updateByPrimaryKey(Field record);
+
+	
     
     
 

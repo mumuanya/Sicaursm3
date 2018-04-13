@@ -9,6 +9,7 @@ public interface FieldService {
 	 Integer delete( Integer id) ;
 
 	  List<Field> selectAll();
+	  List<Field> selectUnfields();
 	
 	
 

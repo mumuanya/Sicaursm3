@@ -17,7 +17,9 @@ public interface ApplyMapper {
     int insertSelective(Apply record);
 
     List<Apply> selectByExample(ApplyExample example);
+    
     List<Apply> selectBystate(Integer state);
+    List<Apply> selectBysi(Integer userid,Integer state);
     
 
     Apply selectByPrimaryKey(Integer id);

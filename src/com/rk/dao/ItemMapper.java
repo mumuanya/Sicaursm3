@@ -17,7 +17,13 @@ public interface ItemMapper {
     int insertSelective(Item record);
 
     List<Item> selectByExample(ItemExample example);
+    
+    
+    
+    List<Item> selectAll();
+	List<Item> selectBystate(Integer state);
 
+	
     Item selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Item record, @Param("example") ItemExample example);
@@ -28,5 +34,7 @@ public interface ItemMapper {
 
     int updateByPrimaryKey(Item record);
 
-	List<Item> selectAll();
+	
+
+	
 }

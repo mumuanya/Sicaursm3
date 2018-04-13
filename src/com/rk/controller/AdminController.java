@@ -21,7 +21,7 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 	/** 
-	 *管理员登录方法
+	 * 管理员登录方法
 	 * 
 	 * @return
 	 */
@@ -52,7 +52,10 @@ public class AdminController {
 	
 	/**
 	 * 返回管理员主页面,页面携带数据
+	 * @param session
+	 * @return
 	 */
+	 
 	@RequestMapping("/index")
 	public ModelAndView toindex(HttpSession session) {
 		

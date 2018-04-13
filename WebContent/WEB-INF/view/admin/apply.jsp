@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>field</title>
+<title>apply</title>
 </head>
 <body>
 <h1>这是申请查看页面</h1>

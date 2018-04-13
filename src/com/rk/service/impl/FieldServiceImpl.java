@@ -57,5 +57,19 @@ public class FieldServiceImpl implements FieldService {
 		return fieldmapper.selectByPrimaryKey(id); 
 		
 	}
+
+	@Override
+	public List<Field> selectUnfields() {
+         
+		List<Field> field = null;
+		
+		try {
+			field = fieldmapper.selectBystate(0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return field;
+	}
         
 }

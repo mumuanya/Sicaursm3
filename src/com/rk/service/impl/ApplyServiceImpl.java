@@ -67,8 +67,8 @@ public class ApplyServiceImpl implements ApplyService {
 
 	@Override
 	public List<Apply> getReturned() {
-              List<Apply> apply = null;
 		
+        List<Apply> apply = null;
 		try {
 			apply = applymapper.selectBystate(3);
 		} catch (Exception e) {
@@ -135,5 +135,73 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		return apply.getState() ;
 	}
+
+	
+	
+	@Override
+	public Integer userApplySubmit(Apply record) {
+		
+		try {
+			return applymapper.insert(record);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+		
+	}
+
+	@Override
+	public Integer userReturnApply(Integer id) {
+		Apply apply = null;
+		try {
+			
+		apply = applymapper.selectByPrimaryKey(id);
+		apply.setState(2);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return apply.getState() ;
+		
+
+	}
+
+	@Override
+	public List<Apply> userGetAppling(Integer id) {
+		List<Apply> apply = null;
+		try {
+			apply = applymapper.selectBysi(id, 0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return apply;
+	}
+
+	@Override
+	public List<Apply> userGetApplied(Integer id) {
+		List<Apply> apply = null;
+		try {
+			apply = applymapper.selectBysi(id, 1);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return apply;
+	}
+
+	@Override
+	public List<Apply> userGetApph(Integer id) {
+		List<Apply> apply = null;
+		try {
+			apply = applymapper.selectBysi(id, 3);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return apply;
+	}
+	
 
 }
