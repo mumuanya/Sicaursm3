@@ -16,7 +16,7 @@ import com.rk.util.JsonResult;
 
 @RequestMapping(value= "/admin/apply")
 @Controller
-public class ApplyController {
+public class AdminApplyController {
 	
 	@Autowired
 	ApplyService applyservice;
@@ -26,7 +26,7 @@ public class ApplyController {
 	 * 查询所有未通过审核的申请
 	 */
 	@ResponseBody
-	@RequestMapping(value="/apply/appling",method = RequestMethod.GET)
+	@RequestMapping(value="/appling",method = RequestMethod.GET)
 	public String getAppling() {
 		
 		List<Apply> list = applyservice.getAppling();
@@ -44,7 +44,7 @@ public class ApplyController {
 	 * 查询所有已经通过审核的申请
 	 */
 	@ResponseBody
-	@RequestMapping(value="/apply/applied",method = RequestMethod.GET)
+	@RequestMapping(value="/applied",method = RequestMethod.GET)
 	public String getApplied() {
 		
 		List<Apply> list = applyservice.getApplied();
@@ -62,7 +62,7 @@ public class ApplyController {
 	 *  查询所有已经申请归还的申请
 	 */
 	@ResponseBody
-	@RequestMapping(value="/apply/returning",method = RequestMethod.GET)
+	@RequestMapping(value="/returning",method = RequestMethod.GET)
 	public String getreturning() {
 		
 		List<Apply> list = applyservice.getReturning();
@@ -80,7 +80,7 @@ public class ApplyController {
 	 *   查询所有已经归还的申请
 	 */
 	@ResponseBody
-	@RequestMapping(value="/apply/returned",method = RequestMethod.GET)
+	@RequestMapping(value="/returned",method = RequestMethod.GET)
 	public String getreturned() {
 		
 		List<Apply> list = applyservice.getReturned();
@@ -101,7 +101,7 @@ public class ApplyController {
 	   */
 	  
 	@ResponseBody
-	@RequestMapping(value="/apply/pass/{id}",method = RequestMethod.PUT)
+	@RequestMapping(value="/pass/{id}",method = RequestMethod.PUT)
 	public String agreeApply(@PathVariable("id") Integer id) {
 		
 		//没确认state是否为0
@@ -120,7 +120,7 @@ public class ApplyController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="/apply/refuse/{id}",method = RequestMethod.PUT)
+	@RequestMapping(value="/refuse/{id}",method = RequestMethod.PUT)
 	public String refuseApply(@PathVariable("id") Integer id) {
 		
 		//没确认state是否为0
@@ -134,13 +134,13 @@ public class ApplyController {
 	}
 	
 	/**
-	 * /apply/return/{id}    同意id为某值的申请的归还申请
+	 *    同意id为某值的申请的归还申请
 	 */
 	@ResponseBody
-	@RequestMapping(value="/apply/return/{id}",method = RequestMethod.PUT)
+	@RequestMapping(value="/return/{id}",method = RequestMethod.PUT)
 	public String agreeReturn(@PathVariable("id") Integer id) {
 		
-		//没确认state是否为0
+		//没确认state是否为2
 		Integer i = applyservice.agreeReturn(id);
 		  
 		  if(i==3) {

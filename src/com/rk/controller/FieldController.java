@@ -15,7 +15,7 @@ import com.rk.model.Field;
 import com.rk.service.FieldService;
 import com.rk.util.JsonResult;
 
-@RequestMapping(value="/field")
+@RequestMapping(value="/admin/field")
 @Controller
 public class FieldController {
 	
@@ -28,7 +28,7 @@ public class FieldController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="/field/all",method = RequestMethod.GET)
+	@RequestMapping(value="/all",method = RequestMethod.GET)
 	public String getAll() {
 		
 		List<Field> list = fieldservice.selectAll();
@@ -48,7 +48,7 @@ public class FieldController {
  * @return
  */
 	@ResponseBody
-	@RequestMapping(value="/field/delete/{id}",method = RequestMethod.DELETE)
+	@RequestMapping(value="/delete/{id}",method = RequestMethod.DELETE)
 	public String deleterecord(@PathVariable("id") Integer id) {
 		
 	  Integer i = fieldservice.delete(id);
@@ -65,7 +65,7 @@ public class FieldController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="/field/update/{id}",method = RequestMethod.PUT)
+	@RequestMapping(value="/update/{id}",method = RequestMethod.PUT)
 	public String updaterecord(@PathVariable("id") Integer id,@RequestParam("record")Field record) {
 		//Field field = fieldservice.selectById(id);
 	    Integer i = fieldservice.update(record);

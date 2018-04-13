@@ -15,7 +15,7 @@ import com.rk.model.Item;
 import com.rk.service.impl.ItemService;
 import com.rk.util.JsonResult;
 
-@RequestMapping(value="/item")
+@RequestMapping(value="/admin/item")
 @Controller
 public class ItemController {
 	
@@ -27,7 +27,7 @@ public class ItemController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="/item/all",method = RequestMethod.GET)
+	@RequestMapping(value="/all",method = RequestMethod.GET)
 	public String getAll() {
 		
 		List<Item> list = itemservice.selectAll();
@@ -47,7 +47,7 @@ public class ItemController {
  * @return
  */
 	@ResponseBody
-	@RequestMapping(value="/item/delete/{id}",method = RequestMethod.DELETE)
+	@RequestMapping(value="/delete/{id}",method = RequestMethod.DELETE)
 	public String deleterecord(@PathVariable("id") Integer id) {
 		
 	  Integer i = itemservice.delete(id);
@@ -64,7 +64,7 @@ public class ItemController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="/field/update/{id}",method = RequestMethod.PUT)
+	@RequestMapping(value="/update/{id}",method = RequestMethod.PUT)
 	public String updaterecord(@PathVariable("id") Integer id,@RequestParam("record")Item record) {
 		//Item item = itemservice.selectById(id);
 	    Integer i = itemservice.update(record);
