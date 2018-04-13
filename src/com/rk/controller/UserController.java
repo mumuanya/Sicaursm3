@@ -66,7 +66,63 @@ public class UserController {
 		         return mdv;
 	}
      
-     
+     /**
+ 	 * 返回可用场地列表页面
+ 	 * @return
+ 	 */
+ 	@RequestMapping("/fields")
+ 	public String toFields() {
+ 		
+ 		return "/user/fields";
+ 		
+ 	}
+ 	
+ 	
+ 	 /**
+ 	 * 返回可用物品列表页面
+ 	 * @return
+ 	 */
+ 	@RequestMapping("/fields")
+ 	public String toitems() {
+ 		
+ 		return "/user/items";
+ 		
+ 	}
+ 	 /**
+ 	 * 返回申请页面,申请场地或者物品
+ 	 * @return
+ 	 */
+ 	@RequestMapping("/apply")
+ 	public String toApply() {
+ 		
+ 		return "/user/apply";
+ 		
+ 	}
+ 	/**
+ 	 * 返回申请已通过列表页面
+ 	 * @return
+ 	 */
+ 	@RequestMapping("/applied")
+ 	public String toApplied() {
+ 		
+ 		return "/user/applied";
+ 		
+ 	}
+ 	
+ 
+ 	/**
+ 	 * 返回申请历史(即已经归还的)页面
+ 	 * @return
+ 	 */
+ 	@RequestMapping("/applyhistory")
+ 	public String toApplyHistory() {
+ 		
+ 		return "/user/applhistory";
+ 		
+ 	}
+ 	
+ 	
+ 	
 	 
 
 }
