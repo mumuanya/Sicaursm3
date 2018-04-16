@@ -30,10 +30,6 @@ public class UserPageInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse arg1, Object arg2) throws Exception {
-		HttpSession session = req.getSession();
-		if(session.getAttribute("user") == null) {
-			return false;
-		}
 		return true;
 	}
 

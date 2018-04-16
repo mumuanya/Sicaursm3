@@ -50,14 +50,16 @@
  	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/admin/**"/>
-			<mvc:exclude-mapping path="admin/login"/>
+			<mvc:exclude-mapping path="/admin/login"/>
 			<mvc:exclude-mapping path="/admin/loginin"/>
+			<mvc:exclude-mapping path="/admin/loginoff"/>
 			<bean class="com.rk.interceptor.AdminPageInterceptor"></bean>
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/user/**"/>
 			<mvc:exclude-mapping path="/user/login"/>
 			<mvc:exclude-mapping path="/user/loginin"/>
+			<mvc:exclude-mapping path="/user/loginoff"/>
 			<bean class="com.rk.interceptor.UserPageInterceptor"></bean>
 		</mvc:interceptor>
 		<!-- <mvc:interceptor>

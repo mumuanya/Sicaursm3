@@ -49,6 +49,12 @@ public class AdminController {
 		}
 		return AdminLoginData.incorrectPassword("incorrect password");
 	}
+	@ResponseBody
+	@RequestMapping(value="/loginoff")
+	public String loginoff(HttpSession session) {
+		session.removeAttribute("admin");
+		return AdminLoginData.success("loginoff success");
+	}
 	
 	/**
 	 * 返回管理员主页面,页面携带数据
@@ -74,8 +80,15 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/field")
-	public String tofield() {
-		return "/admin/field";
+	public ModelAndView tofield(HttpSession session) {
+		ModelAndView mdv = new ModelAndView();
+		//1.增加数据
+		User user  = (User)session.getAttribute("admin");
+		
+		mdv.addObject("admin", user);
+		//2.增加view name
+		mdv.setViewName("/admin/field");
+		return mdv;
 	}
 	
 	/**
@@ -83,8 +96,15 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/item")
-	public String toitem() {
-		return "/admin/item";
+	public ModelAndView toitem(HttpSession session) {
+		ModelAndView mdv = new ModelAndView();
+		//1.增加数据
+		User user  = (User)session.getAttribute("admin");
+		
+		mdv.addObject("admin", user);
+		//2.增加view name
+		mdv.setViewName("/admin/item");
+		return mdv;
 	}
 	
 	/**
@@ -92,33 +112,61 @@ public class AdminController {
 	 * @return
 	 */
 	@RequestMapping("/apply")
-	public String toapply() {
-		return "/admin/apply";
+	public ModelAndView toapply(HttpSession session) {
+		ModelAndView mdv = new ModelAndView();
+		//1.增加数据
+		User user  = (User)session.getAttribute("admin");
+		
+		mdv.addObject("admin", user);
+		//2.增加view name
+		mdv.setViewName("/admin/apply");
+		return mdv;
 	}
 	/**
 	 * 返回已经审核通过的申请页面
 	 * @return
 	 */
 	@RequestMapping("/passedapply")
-	public String topassedapply() {
-		return "/admin/passedapply";
+	public ModelAndView topassedapply(HttpSession session) {
+		ModelAndView mdv = new ModelAndView();
+		//1.增加数据
+		User user  = (User)session.getAttribute("admin");
+		
+		mdv.addObject("admin", user);
+		//2.增加view name
+		mdv.setViewName("/admin/passedapply");
+		return mdv;
 	}
 	
 	/**
 	 * 返回正在归还申请页面
 	 * @return
 	 */
-	@RequestMapping("/returingapply ")
-	public String toriapply() {
-		return "/admin/returingapply";
+	@RequestMapping("/returingapply")
+	public ModelAndView toriapply(HttpSession session) {
+		ModelAndView mdv = new ModelAndView();
+		//1.增加数据
+		User user  = (User)session.getAttribute("admin");
+		
+		mdv.addObject("admin", user);
+		//2.增加view name
+		mdv.setViewName("/admin/returingapply");
+		return mdv;
 	}
 	/**
 	 * 返回用户申请记录页面
 	 * @return
 	 */
 	@RequestMapping("/applyrecord")
-	public String toapplyrecord() {
-		return "/admin/applyrecord";
+	public ModelAndView toapplyrecord(HttpSession session) {
+		ModelAndView mdv = new ModelAndView();
+		//1.增加数据
+		User user  = (User)session.getAttribute("admin");
+		
+		mdv.addObject("admin", user);
+		//2.增加view name
+		mdv.setViewName("/admin/applyrecord");
+		return mdv;
 	}
 
 	

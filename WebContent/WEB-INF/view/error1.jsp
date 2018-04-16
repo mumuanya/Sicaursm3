@@ -6,7 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>错误页面</title>
 </head>
-<body>
-	<h1>${msg }</h1>
+<body style="background-color:#B396FF">
+	<div style="width:300px; height:300px; margin-left:auto; margin-right:auto; margin-top:200px; color:#FFFFFF; text-align:center">
+		<h1>ERROR 404</h1>
+		<h2>${msg }</h2>
+	</div>
+	
 </body>
 </html>
