@@ -1,6 +1,17 @@
 $(document).ready(function(){
+	
 	refreshVip();
+	
+	$('#applytable').on('check.bs.table',function (row,elem) {
+		openBtn();
+	});
+	
+	$('#applytable').on('uncheck.bs.table', function (row,elem) {
+		 closeBtn();
+	 });
 });
+
+
 
 //在这里定义加载数据到bootstraptable
 function refreshVip() {
@@ -15,4 +26,14 @@ function refreshVip() {
             $('#applytable').bootstrapTable('load',data);
 	    }
 	});
+}
+
+//开关按钮的函数
+function closeBtn() {
+    $("button[name='refuseapply']").attr('disabled','disabled');
+    $("button[name='passapply']").attr('disabled','disabled');
+}
+function openBtn() {
+    $("button[name='refuseapply']").removeAttr('disabled');
+    $("button[name='passapply']").removeAttr('disabled');
 }

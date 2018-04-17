@@ -1,5 +1,14 @@
 $(document).ready(function(){
+	
 	refreshVip();
+	
+	$('#returningapplytable').on('check.bs.table',function (row,elem) {
+		openBtn();
+	});
+	
+	$('#returningapplytable').on('uncheck.bs.table', function (row,elem) {
+		 closeBtn();
+	});
 });
 
 //在这里定义加载数据到bootstraptable
@@ -15,4 +24,13 @@ function refreshVip() {
             $('#returningapplytable').bootstrapTable('load',data);
 	    }
 	});
+}
+
+
+//开关按钮的函数
+function closeBtn() {
+    $("button[name='consent']").attr('disabled','disabled');
+}
+function openBtn() {
+    $("button[name='consent']").removeAttr('disabled');
 }

@@ -91,7 +91,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel panel-heading">
-							<button class="btn btn-primary" disabled="disabled">同意归还</button>
+							<button class="btn btn-primary" name="consent" disabled="disabled">同意归还</button>
 						</div>
 						<div class="panel-body">
 							<table data-toggle="table"	id="returningapplytable" data-show-refresh="true" data-show-toggle="true" data-single-select="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
