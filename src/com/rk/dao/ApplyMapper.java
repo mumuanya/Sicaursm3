@@ -19,7 +19,8 @@ public interface ApplyMapper {
     List<Apply> selectByExample(ApplyExample example);
     
     List<Apply> selectBystate(Integer state);
-    List<Apply> selectBysi(Integer userid,Integer state);
+    
+    List<Apply> selectBysi(@Param("id") Integer id,@Param("state") Integer state);
     
 
     Apply selectByPrimaryKey(Integer id);

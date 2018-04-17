@@ -90,11 +90,15 @@
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-body">
-								<table data-toggle="table"	data-url="/" data-pagination="true" data-search="true" data-show-refresh="true">
+								<table data-toggle="table"	id="itemtable" data-pagination="true" data-search="true" data-show-refresh="true">
 									<thead>
 										<tr>
-											<th data-sortable="true" data-field="date">时间</th>
-											<th data-field="customname">标题</th>
+											<th data-sortable="true" data-field="id">ID</th>
+											<th data-field="name">名称</th>
+											<th data-field="description">描述</th>
+											<th data-field="state">状态</th>
+											<th data-field="position">位置</th>
+											<th data-field="borrower_id">借用者ID</th>
 										</tr>
 									</thead>
 								</table>
@@ -104,5 +108,6 @@
 				</div>
 			</div>
 		</div>
+		<script src="<%= request.getContextPath() %>/static/front/js/base/item.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

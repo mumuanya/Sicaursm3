@@ -71,5 +71,18 @@ public class FieldServiceImpl implements FieldService {
 		}
 		return field;
 	}
+
+	@Override
+	public Integer addField(Field field) {
+		Integer rs = null;
+		
+		try {
+			rs = fieldmapper.insertSelective(field);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("≤Â»Îfield ß∞‹");
+		}
+		return rs;
+	}
         
 }

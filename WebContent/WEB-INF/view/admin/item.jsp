@@ -91,20 +91,21 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel panel-heading">
-							<button class="btn btn-primary" disabled="disabled">删除</button>
-							<button class="btn btn-primary" disabled="disabled">修改</button>
-							<button class="btn btn-primary" disabled="disabled">查看详细</button>
+							<button class="btn btn-primary" name="deleteitem" disabled="disabled" data-toggle="modal" data-target=".deleteitem">删除</button>
+							<button class="btn btn-primary" name="updateitem" disabled="disabled" data-toggle="modal" data-target=".updateitem">修改</button>
+							<button class="btn btn-primary" name="additem" data-toggle="modal" data-target=".additem">增加</button>
+							<button class="btn btn-primary" name="lookitem" disabled="disabled" data-toggle="modal" data-target=".lookitem">查看详细</button>
 						</div>
 						<div class="panel-body">
-							<table data-toggle="table" id="itemtable" data-pagination="true" data-search="true" data-show-refresh="true">
+							<table data-toggle="table" id="itemtable" data-show-refresh="true" data-show-toggle="true" data-single-select="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 								<thead>
 									<tr>
+										<th data-checkbox="true" >选择</th>
 										<th data-sortable="true" data-field="id">ID</th>
 										<th data-field="name">名称</th>
 										<th data-field="description">描述</th>
 										<th data-field="state">状态</th>
 										<th data-field="position">位置</th>
-										<th data-field="borrower_id">借用者ID</th>
 									</tr>
 								</thead>
 							</table>
@@ -114,6 +115,96 @@
 			</div>
 			</div>
 		</div>
+		<!--查看模态框  -->
+		<div class="modal fade lookitem" tabindex="-1" role="dialog" aria-labelledby="lookfieldModalLabel">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+		       <div class="modal-header">
+		       		查看物品信息
+		       </div>
+		       <div class="modal-body">
+		       		<div id="lookitemmodal">
+		        		<label for="id">ID号:</label><input type="text" name="id" id="id" value="" disabled="disabled"/>
+		        		<br /><label for="name">名称:</label><input type="text" name="name" id="name" value="" disabled="disabled"/>
+		        		<br /><label for="description">描述:</label><input type="text" name="description" id="description" value="" disabled="disabled"/>
+		        		<br /><label for="state">状态:</label><input type="text" name="state" id="state" value="" disabled="disabled"/>
+		        		<br /><label for="position">何地:</label><input type="text" name="position" id="position" value="" disabled="disabled"/>
+		        	</div>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		        </div>
+		    </div>
+		  </div>
+		</div>
+		<!--/查看模态框  -->
+		<!--删除模态框  -->
+		<div class="modal fade deleteitem" id="deleteitem" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+		      <div class="modal-content">
+			      <div class="modal-header">
+			       		删除收录物品信息
+			       </div>
+			        <div class="modal-body">
+			        	<p style="color: red;">删除物品收录信息，将会导致关于此物品的申请信息全部失效！</p>
+			        </div>
+			        <div class="modal-footer">
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">取消删除</button>
+	       			 	<button type="button" class="btn btn-primary" onclick="deleteitem()">确认删除</button>
+			        </div>
+			    </div>
+		    </div>
+		  </div>
+		</div>
+		<!--/删除模态框  -->
+		<!--更新模态框  -->
+		<div class="modal fade updateitem" id="updateitem" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		       		修改收录物品信息
+		       </div>
+		        <div class="modal-body" id="updateitemmodal">
+		        	<label for="id">ID号:</label><input type="text" name="id" id="id" value="" disabled="disabled"/><span style="color:red;">不可修改</span>
+		        	<hr />
+		        		<br /><label for="name">名称:</label><input type="text" name="name" id="name" value=""/>
+		        		<br /><label for="description">描述:</label><input type="text" name="description" id="description" value=""/>
+		        		<br /><label for="state">状态:</label>
+								<select name="state">
+									<option value="0">未借出</option>
+									<option value="1">已借出</option>
+								</select>
+		        		<br /><label for="position">位置:</label><input type="text" name="position" id="position" value=""/>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">取消修改</button>
+       			 	<button type="button" class="btn btn-primary" onclick="updateitem()">确认修改</button>
+		        </div>
+		    </div>
+		  </div>
+		</div>
+		<!--/更新模态框  -->
+		<!--增加模态框  -->
+		<div class="modal fade additem" id="additem" tabindex="-1" role="dialog" aria-labelledby="myaddModalLabel">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		       		增加收录物品信息
+		       </div>
+		        <div class="modal-body" id="additemmodal">
+		        		<br /><label for="name">名称:</label><input type="text" name="name" id="name" value=""/>
+		        		<br /><label for="description">描述:</label><input type="text" name="description" id="description" value=""/>
+		        		<br /><label for="position">位置:</label><input type="text" name="position" id="position" value=""/>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">取消增加</button>
+       			 	<button type="button" class="btn btn-primary" onclick="additem()">确认增加</button>
+		        </div>
+		    </div>
+		  </div>
+		</div>
+		<!--/增加模态框  -->
 		<script src="<%= request.getContextPath() %>/static/back/js/base/item.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

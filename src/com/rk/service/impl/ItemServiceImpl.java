@@ -73,5 +73,14 @@ public class ItemServiceImpl implements ItemService {
 		return item;
 	}
 
-
+	@Override
+	public Integer addItem(Item item) {
+		Integer rs = null;
+		try {
+			rs = itemmapper.insertSelective(item);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
 }

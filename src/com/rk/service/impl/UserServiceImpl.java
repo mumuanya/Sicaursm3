@@ -31,4 +31,16 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}			
 	}
+
+	@Override
+	public User getUserById(Integer userid) {
+		User user = null;
+		try {
+			user = userMapper.selectByPrimaryKey(userid);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("≤È—Ø”√ªß ß∞‹£°");
+		}
+		return user;
+	}
 }

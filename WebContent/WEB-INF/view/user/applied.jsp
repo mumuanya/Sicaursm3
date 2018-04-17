@@ -85,22 +85,24 @@
 						<li class="active">通过的申请</li>
 					</ol>
 				</div><!--/.row-->
-				
 				<!--这里是表格和相关按钮-->
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							
 							<div class="panel panel-heading">
 								<button class="btn btn-primary" disabled="disabled">查看详细</button>
 							</div>
-							
 							<div class="panel-body">
-								<table data-toggle="table"	data-url="/" data-pagination="true" data-search="true" data-show-refresh="true">
+								<table data-toggle="table"	id="appliedtable" data-pagination="true" data-search="true" data-show-refresh="true">
 									<thead>
 										<tr>
-											<th data-sortable="true" data-field="date">时间</th>
-											<th data-field="customname">标题</th>
+											<th data-sortable="true" data-field="id">ID</th>
+											<th data-field="userid">用户ID</th>
+											<th data-field="borrowtype">借用类型</th>
+											<th data-field="tid">借用物品/场地ID</th>
+											<th data-field="state">状态</th>
+											<th data-field="borrowreason">借用理由</th>
+											<th data-field="borrowtime">借用时间</th>
 										</tr>
 									</thead>
 								</table>
@@ -110,5 +112,6 @@
 				</div>
 			</div>
 		</div>
+		<script src="<%= request.getContextPath() %>/static/front/js/base/applied.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

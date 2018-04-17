@@ -1,5 +1,6 @@
 package com.rk.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.rk.bean.ApplyBean;
 import com.rk.model.Apply;
 import com.rk.service.ApplyService;
+import com.rk.service.FieldService;
+import com.rk.service.ItemService;
+import com.rk.service.UserService;
 import com.rk.util.JsonResult;
 
 @RequestMapping(value= "/admin/apply")
@@ -21,7 +26,14 @@ public class AdminApplyController {
 	@Autowired
 	ApplyService applyservice;
 	
+	@Autowired
+	FieldService fieldService;
 	
+	@Autowired
+	ItemService itemService;
+	
+	@Autowired
+	UserService userService;
 	/**
 	 * 查询所有未通过审核的申请
 	 */
@@ -30,12 +42,28 @@ public class AdminApplyController {
 	public String getAppling() {
 		
 		List<Apply> list = applyservice.getAppling();
+		List<ApplyBean> list2 = new ArrayList<>();
+		ApplyBean apply = null;
+		for(Apply a:list) {
+			apply = new ApplyBean();
+			String username = (userService.getUserById(a.getUserid())).getNeckname(); 
+			String itemfieldname = null;
+			if(a.getBorrowtype() == 0) {
+				//场地
+				itemfieldname = fieldService.selectById(a.getTid()).getName();
+			}else if(a.getBorrowtype() == 1) {
+				//物品
+				itemfieldname = itemService.selectById(a.getTid()).getName();
+			}
+			apply.setApply(a,username,itemfieldname);
+			list2.add(apply);
+		}
 		if(list != null) {
-			String jsonStr = JSON.toJSONString(list);
+			String jsonStr = JSON.toJSONString(list2);
 			System.out.println("[LOG] json data:" + jsonStr);
 			return jsonStr;
 		}else {
-			return JsonResult.RS_FALSE;
+			return JSON.toJSONString(JsonResult.setFalse());
 		}
 		
 	}
@@ -48,12 +76,28 @@ public class AdminApplyController {
 	public String getApplied() {
 		
 		List<Apply> list = applyservice.getApplied();
+		List<ApplyBean> list2 = new ArrayList<>();
+		ApplyBean apply = null;
+		for(Apply a:list) {
+			apply = new ApplyBean();
+			String username = (userService.getUserById(a.getUserid())).getNeckname(); 
+			String itemfieldname = null;
+			if(a.getBorrowtype() == 0) {
+				//场地
+				itemfieldname = fieldService.selectById(a.getTid()).getName();
+			}else if(a.getBorrowtype() == 1) {
+				//物品
+				itemfieldname = itemService.selectById(a.getTid()).getName();
+			}
+			apply.setApply(a,username,itemfieldname);
+			list2.add(apply);
+		}
 		if(list != null) {
-			String jsonStr = JSON.toJSONString(list);
+			String jsonStr = JSON.toJSONString(list2);
 			System.out.println("[LOG] json data:" + jsonStr);
 			return jsonStr;
 		}else {
-			return JsonResult.RS_FALSE;
+			return JSON.toJSONString(JsonResult.setFalse());
 		}
 		
 	}
@@ -66,12 +110,28 @@ public class AdminApplyController {
 	public String getreturning() {
 		
 		List<Apply> list = applyservice.getReturning();
+		List<ApplyBean> list2 = new ArrayList<>();
+		ApplyBean apply = null;
+		for(Apply a:list) {
+			apply = new ApplyBean();
+			String username = (userService.getUserById(a.getUserid())).getNeckname(); 
+			String itemfieldname = null;
+			if(a.getBorrowtype() == 0) {
+				//场地
+				itemfieldname = fieldService.selectById(a.getTid()).getName();
+			}else if(a.getBorrowtype() == 1) {
+				//物品
+				itemfieldname = itemService.selectById(a.getTid()).getName();
+			}
+			apply.setApply(a,username,itemfieldname);
+			list2.add(apply);
+		}
 		if(list != null) {
-			String jsonStr = JSON.toJSONString(list);
+			String jsonStr = JSON.toJSONString(list2);
 			System.out.println("[LOG] json data:" + jsonStr);
 			return jsonStr;
 		}else {
-			return JsonResult.RS_FALSE;
+			return JSON.toJSONString(JsonResult.setFalse());
 		}
 		
 	}
@@ -86,12 +146,28 @@ public class AdminApplyController {
 	public String getreturned() {
 		
 		List<Apply> list = applyservice.getReturned();
+		List<ApplyBean> list2 = new ArrayList<>();
+		ApplyBean apply = null;
+		for(Apply a:list) {
+			apply = new ApplyBean();
+			String username = (userService.getUserById(a.getUserid())).getNeckname(); 
+			String itemfieldname = null;
+			if(a.getBorrowtype() == 0) {
+				//场地
+				itemfieldname = fieldService.selectById(a.getTid()).getName();
+			}else if(a.getBorrowtype() == 1) {
+				//物品
+				itemfieldname = itemService.selectById(a.getTid()).getName();
+			}
+			apply.setApply(a,username,itemfieldname);
+			list2.add(apply);
+		}
 		if(list != null) {
-			String jsonStr = JSON.toJSONString(list);
+			String jsonStr = JSON.toJSONString(list2);
 			System.out.println("[LOG] json data:" + jsonStr);
 			return jsonStr;
 		}else {
-			return JsonResult.RS_FALSE;
+			return JSON.toJSONString(JsonResult.setFalse());
 		}
 		
 	}
@@ -110,9 +186,9 @@ public class AdminApplyController {
 		Integer i = applyservice.agreeApl(id);
 		  
 		  if(i==1) {
-			return JsonResult.RS_TRUE;
+			return JSON.toJSONString(JsonResult.setTrue());
 		  }
-		  else return JsonResult.RS_FALSE;
+		  else return JSON.toJSONString(JsonResult.setFalse());
 		
 	}
 	
@@ -129,9 +205,9 @@ public class AdminApplyController {
 		Integer i = applyservice.refuseApl(id);
 		  
 		  if(i==-1) {
-			return JsonResult.RS_TRUE;
+			return JSON.toJSONString(JsonResult.setTrue());
 		  }
-		  else return JsonResult.RS_FALSE;
+		  else return JSON.toJSONString(JsonResult.setFalse());
 		
 	}
 	
@@ -149,9 +225,9 @@ public class AdminApplyController {
 		Integer i = applyservice.agreeReturn(id);
 		  
 		  if(i==3) {
-			return JsonResult.RS_TRUE;
+			return JSON.toJSONString(JsonResult.setTrue());
 			}
-		  else return JsonResult.RS_FALSE;
+		  else return JSON.toJSONString(JsonResult.setFalse());
 		
 	}
 	

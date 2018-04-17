@@ -34,7 +34,7 @@ public class UserItemsController {
 			System.out.println("[LOG] json data:" + jsonStr);
 			return jsonStr;
 		}else {
-			return JsonResult.RS_FALSE;
+			return JSON.toJSONString(JsonResult.setFalse());
 		}
 	}
 
