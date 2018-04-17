@@ -79,7 +79,7 @@
 	</bean>
 	
 	<!--配置一个密码重置邮件通知的bean  -->
-	<bean id="passwordAssistant" class="com.rk.service.impl.PasswordAssistantImpl">
+	<bean id="mailAssistant" class="com.rk.service.impl.MailAssistantImpl">
 		<property name="mailSender" ref="mailSender"></property>
 		<property name="simpleMailMessage" ref="templateMessage"></property>
 	</bean>

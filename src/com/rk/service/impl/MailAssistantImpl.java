@@ -10,14 +10,14 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
-import com.rk.service.PasswordAssistant;
+import com.rk.service.MailAssistant;
 
 /**
- * 这个类用于在用户重置密码后,将重置的密码发送到用户的邮箱中去.
+ * 邮件发送类
  * @author Mrruan
  *
  */
-public class PasswordAssistantImpl implements PasswordAssistant {
+public class MailAssistantImpl implements MailAssistant {
 
 	private MailSender mailSender;
 	
@@ -46,17 +46,6 @@ public class PasswordAssistantImpl implements PasswordAssistant {
 	public void passwordToMailWithInlineResource(String usermail, String newPsd, String neckname, String oldPsd) {
 		//定义邮件发送器
 		JavaMailSenderImpl sender = (JavaMailSenderImpl) mailSender;
-		/*sender.setDefaultEncoding("UTF-8");
-		sender.setHost("smtp.qq.com");
-		sender.setProtocol("smtp");
-		sender.setPort(587);
-		sender.setUsername("1537854187@qq.com");
-		sender.setPassword("mbyfwpvsuximgaai");
-		Properties  javaMailProperties = new Properties();
-		javaMailProperties.setProperty("mail.smtp.auth", "true");
-		javaMailProperties.setProperty("mail.smtp.timeout", "25000");
-		sender.setJavaMailProperties(javaMailProperties);*/
-		//定义mime message
 		MimeMessage message = sender.createMimeMessage();
 		MimeMessageHelper  helper;
 		try {
@@ -77,7 +66,7 @@ public class PasswordAssistantImpl implements PasswordAssistant {
 					"			</div>\r\n" + 
 					"			<h2>新的密码:<i style=\"color: red;\">" + newPsd + "</i></h2>\r\n" + 
 					"			<p>旧密码为:<b>" + oldPsd + "</b>,除此之外您可以在网站上登录您的账号,并重置相关信息!</p>\r\n" +
-					"           <p>以上内容来自大学生校园互助平台,请勿答复!<a href=\"#\">大学生校园互助平台</a></p>   " +
+					"           <p>以上内容来自校园公共资源借用平台,请勿答复!<a href=\"#\">校园公共资源借用平台</a></p>   " +
 					"		</div>\r\n" + 
 					"	</body>\r\n" + 
 					"</html>", true);
@@ -106,6 +95,66 @@ public class PasswordAssistantImpl implements PasswordAssistant {
 
 	public void setSimpleMailMessage(SimpleMailMessage templateMailMessage) {
 		this.templateMailMessage = templateMailMessage;
+	}
+
+	@Override
+	public void refuseApply(String usermail, String neckname) {
+		SimpleMailMessage msg 
+		= new SimpleMailMessage(this.templateMailMessage);
+		msg.setTo(usermail);
+		msg.setText("亲爱的" + neckname + ",您所申请的资源已被管理员拒绝，您可以尝试重新申请！");
+		//发送邮件
+		try {
+			this.mailSender.send(msg);
+		} catch (MailException e) {
+			System.out.println("[EXCEPTION]:发送邮件失败,发送到" + usermail);
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void agreeApply(String usermail, String neckname) {
+		SimpleMailMessage msg 
+		= new SimpleMailMessage(this.templateMailMessage);
+		msg.setTo(usermail);
+		msg.setText("亲爱的" + neckname + ",您所申请的资源已同意，请准备相关资料到指定地点做相关协调！");
+		//发送邮件
+		try {
+			this.mailSender.send(msg);
+		} catch (MailException e) {
+			System.out.println("[EXCEPTION]:发送邮件失败,发送到" + usermail);
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void urgeApply(String usermail, String neckname) {
+		SimpleMailMessage msg 
+		= new SimpleMailMessage(this.templateMailMessage);
+		msg.setTo(usermail);
+		msg.setText("亲爱的" + neckname + ",管理员催促您尽快归还资源，以免造成个人信誉问题！");
+		//发送邮件
+		try {
+			this.mailSender.send(msg);
+		} catch (MailException e) {
+			System.out.println("[EXCEPTION]:发送邮件失败,发送到" + usermail);
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void agreeReturn(String usermail, String neckname) {
+		SimpleMailMessage msg 
+		= new SimpleMailMessage(this.templateMailMessage);
+		msg.setTo(usermail);
+		msg.setText("亲爱的" + neckname + ",恭喜您归还资源成功！如需再次使用请重新申请！");
+		//发送邮件
+		try {
+			this.mailSender.send(msg);
+		} catch (MailException e) {
+			System.out.println("[EXCEPTION]:发送邮件失败,发送到" + usermail);
+			e.printStackTrace();
+		}
 	}
 
 }
