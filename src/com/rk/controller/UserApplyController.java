@@ -44,11 +44,30 @@ public class UserApplyController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="/submit",method = RequestMethod.POST)
-	public String applySubmit(@RequestParam("record")Apply record) {
+	@RequestMapping(value="/apply",method = RequestMethod.POST)
+	public String applySubmit(HttpSession session,
+			@RequestParam Integer borrowtype,
+			@RequestParam Integer tid,
+			@RequestParam String borrowreason,
+			@RequestParam Integer borrowtime) {
+		//数据校验
+		if(borrowtype == null) return JSON.toJSONString(JsonResult.setFalse());
+		if(tid == null) return JSON.toJSONString(JsonResult.setFalse());
+		if(borrowreason == null || borrowreason.equals("")) return JSON.toJSONString(JsonResult.setFalse());
+		if(borrowtime == null || borrowtime < 1) return JSON.toJSONString(JsonResult.setFalse());
 		
-		Integer i = applyservice.userApplySubmit(record);
-		if(i==1) {
+		User user = (User)session.getAttribute("user");
+		Apply apply = new Apply();
+		
+		apply.setBorrowreason(borrowreason);
+		apply.setBorrowtype(borrowtype);
+		apply.setTid(tid);
+		apply.setBorrowtime(borrowtime);
+		apply.setUserid(user.getId());
+		apply.setState(0);
+		Integer i = applyservice.userApplySubmit(apply);
+		
+		if(i > 0) {
 			return JSON.toJSONString(JsonResult.setTrue());
 		}
 		else{
