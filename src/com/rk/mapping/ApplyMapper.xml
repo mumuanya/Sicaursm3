@@ -99,11 +99,11 @@
     from apply
     where state = #{state,jdbcType=INTEGER}
   </select>
-  <select id="selectBysi" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectBysi" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from apply
-    where id = #{id,jdbcType=INTEGER} and state = #{state,jdbcType=INTEGER}
+    where userid = #{id} and state = #{state}
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

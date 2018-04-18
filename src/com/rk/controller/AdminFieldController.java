@@ -1,5 +1,6 @@
 package com.rk.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.rk.bean.FieldBean;
 import com.rk.model.Field;
 import com.rk.service.FieldService;
 import com.rk.util.JsonResult;
@@ -31,12 +33,20 @@ public class AdminFieldController {
 	public String getAll() {
 		
 		List<Field> list = fieldservice.selectAll();
+		//¥¶¿Ìstate”Ú
+		List<FieldBean> list2 = new ArrayList<>();
+		FieldBean fb = null;
+		for(Field f: list) {
+			fb = new FieldBean();
+			fb.setField(f);
+			list2.add(fb);
+		}
 		if(list != null) {
-			String jsonStr = JSON.toJSONString(list);
+			String jsonStr = JSON.toJSONString(list2);
 			System.out.println("[LOG] json data:" + jsonStr);
 			return jsonStr;
 		}else {
-			return JsonResult.RS_FALSE;
+			return JSON.toJSONString(JsonResult.setFalse());
 		}
 	}
 	
@@ -50,11 +60,15 @@ public class AdminFieldController {
 	@RequestMapping(value="/delete/{id}",method = RequestMethod.DELETE)
 	public String deleterecord(@PathVariable("id") Integer id) {
 		
-	  Integer i = fieldservice.delete(id);
+	  Integer rs = fieldservice.delete(id);
 	  
-	  if(i==1)
-		return JsonResult.RS_TRUE;
-	  else return JsonResult.RS_FALSE;
+	  if(rs > 0) {
+		  System.out.println(JSON.toJSONString(JsonResult.setTrue()));
+		  return JSON.toJSONString(JsonResult.setTrue());
+	  }
+	  else{
+		  return JSON.toJSONString(JsonResult.setFalse()); 
+	  }
 	}
 	
 	/**
@@ -64,15 +78,37 @@ public class AdminFieldController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="/update/{id}",method = RequestMethod.PUT)
-	public String updaterecord(@PathVariable("id") Integer id,@RequestParam("record")Field record) {
-		//Field field = fieldservice.selectById(id);
-	    Integer i = fieldservice.update(record);
-	  if(i==1)
-		return JsonResult.RS_TRUE;
-	  else return JsonResult.RS_FALSE;
+	@RequestMapping(value="/update/{id}",method = RequestMethod.POST)
+	public String updaterecord(@PathVariable("id") Integer id,
+			@RequestParam("name")String name,
+			@RequestParam("description")String description,
+			@RequestParam("position")String position,
+			@RequestParam("state")Integer state) {
+		Field field = fieldservice.selectById(id);
+		if(name != null) field.setName(name);
+		if(description != null) field.setDescription(description);
+		if(position != null) field.setPosition(position);
+		if(state != null) field.setState(state);
+	    Integer i = fieldservice.update(field);
+	  if(i > 0)
+		return JSON.toJSONString(JsonResult.setTrue());
+	  else 
+		return JSON.toJSONString(JsonResult.setFalse());
 	}
 	
-	
-
+	@ResponseBody
+	@RequestMapping(value="/add",method = RequestMethod.POST)
+	public String addrecord(@RequestParam String name, @RequestParam String description, @RequestParam String position) {
+		Field field = new Field();
+		field.setDescription(description);
+		field.setName(name);
+		field.setPosition(position);
+		field.setState(0);
+		Integer i = fieldservice.addField(field);
+		if(i.intValue() > 0) {
+			return JSON.toJSONString(JsonResult.setTrue());
+		}else {
+			return JSON.toJSONString(JsonResult.setFalse());
+		}
+	}
 }

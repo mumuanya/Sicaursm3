@@ -18,5 +18,7 @@ public interface ItemService {
 
 	List<Item> selectUnitems();
 
+	Integer addItem(Item item);
+
 
 }

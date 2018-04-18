@@ -17,6 +17,8 @@ public interface FieldService {
 
 	Field selectById(Integer id);
 
+	Integer addField(Field field);
+
 	
 
 }

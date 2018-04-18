@@ -11,9 +11,9 @@ public interface ApplyService {
 	List<Apply> getApplied();
 	List<Apply> getReturning();
 	List<Apply> getReturned();
-	Integer agreeApl(Integer id);
+	Integer agreeApl(Integer id, String borrowtype);
     Integer refuseApl(Integer id);
-    Integer agreeReturn(Integer id);
+    Integer agreeReturn(Integer id, String borrowtype);
     
     //user
     Integer userApplySubmit(Apply record);
@@ -21,4 +21,5 @@ public interface ApplyService {
     List<Apply> userGetAppling(Integer id);
 	List<Apply> userGetApplied(Integer id);
 	List<Apply> userGetApph(Integer id);
+	Apply getApplyByid(Integer id);
 }
