@@ -100,7 +100,7 @@
 								<div class="row text-center" style="margin-bottom: 20px;">
 									<div class="col-lg-6">
 										<label for="borrowtype">借用类型：</label>
-										<select class="selectpicker" name="borrowtype">
+										<select id="borrowtype" class="selectpicker" name="borrowtype">
 											<option selected="selected" disabled="disabled">请选择</option>
 											<option value="0">场地</option>
 											<option value="1">物品</option>
@@ -108,27 +108,27 @@
 									</div>
 									<div class="col-lg-6">
 										<label for="name">借用名称：</label>
-										<select class="selectpicker" name="name">
+										<select id="tid" class="selectpicker" name="name">
 											<option selected="selected" disabled="disabled">请选择</option>
 										</select>
 									</div>
 								</div>
 								<div class="row text-center"  style="margin-bottom: 20px;">
 									<div class="col-lg-6">
-										<label for="name">借用理由：</label>
+										<label for="borrowreason">借用理由：</label>
 										<input class="form-control" type="text" name="borrowreason" id="borrowreason" value="" />
 									</div>
 									<div class="col-lg-6">
-										<label for="name">借用时长：</label>
-										<input class="form-control" type="number" name="borrowreason" id="borrowreason" value="" placeholder="输入借用天数"/>
+										<label for=""borrowtime"">借用时长：</label>
+										<input class="form-control" type="number" name=""borrowtime"" id="borrowtime" value="" placeholder="输入借用天数"/>
 									</div>
 								</div>
 								<div class="row text-center">
 									<div class="col-lg-2 col-lg-offset-4">
-										<button type="button" class="btn btn-info">重新填写</button>
+										<button type="button" class="btn btn-info" onclick="resetValue()">重新填写</button>
 									</div>
 									<div class="col-lg-2">
-										<button type="button" class="btn btn-success">提交申请</button>
+										<button type="button" class="btn btn-success" onclick="toapply()">提交申请</button>
 									</div>
 								</div>
 							</div>
@@ -137,5 +137,6 @@
 				</div>
 			</div>
 		</div>
+		<script src="<%= request.getContextPath() %>/static/front/js/base/apply.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
@@ -32,89 +34,34 @@
 						<a rel="home" href="<%= request.getContextPath() %>/index.jsp"><img class="logo" src="<%= request.getContextPath() %>/static/public/img/logo.png" width="200" alt="logo"></a>
 					</li>
 					<li>
-						<a href="common/notice" style="font-size: 45px;">公告</a>
+						<a href="" style="font-size: 45px;">公告</a>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-			<!-- Indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-			</ol>
 
-			<!-- Wrapper for slides -->
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img src="<%= request.getContextPath() %>/static/public/img/slide3.jpg" alt="">
-					<div class="carousel-caption">
-						化繁为简
+		<div class="divider col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xs-offset-3 col-sm-6 col-xs-6 col-md-6">
+			<div class="header-text"><span>公告内容</span></div>
+		</div>
+
+		<div id="exTab2" class="col-md-6 col-lg-6 col-lg-offset-3 col-md-offset-3">
+			<div class="tab-content ">
+				<div class="tab-pane active" id="1">
+					<div class="blog-event">
+						<div class="featured-blog">
+							<h3>引入地点资源列表<small>&nbsp;&nbsp;&nbsp;&nbsp;2018-2-6</small></h3>
+							<p> 从现在起，杏园周边环境可外借！请同学们多多留意。</p>
+						</div>
 					</div>
-				</div>
-				<div class="item">
-					<img src="<%= request.getContextPath() %>/static/public/img/slide2.jpg" alt="">
-					<div class="carousel-caption">
-						实时通知
-					</div>
-				</div>
-				<div class="item">
-					<img src="<%= request.getContextPath() %>/static/public/img/slide1.jpg" alt="">
-					<div class="carousel-caption">
-						集中管理
+					<div class="blog-event">
+						<div class="featured-blog">
+							<h3>引入新的物品资源<small>&nbsp;&nbsp;&nbsp;&nbsp;2018-1-3</small></h3>
+							<p> 老区游泳池旁边的球类已开发，目前可借用资源了！</p>
+						</div>
 					</div>
 				</div>
 			</div>
-
-			<!-- Controls -->
-			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">上一个</span>
-			</a>
-			<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">下一个</span>
-			</a>
 		</div>
-		<div class="container header-start text-center">
-			<div class="heading-icon">
-				<i class="fa fa-3x fa-desktop"></i>
-			</div>
-			<h1 class="main-text">开始使用校园公共资源借用平台</h1>
-			<p class="text-center sub-text">校园公共平台旨在营造一个线上线下的运营模式,提高校园公共物资借用效率，为管理者和师生提供便捷的服务和高效的执行方法。</p>
-		</div>
-		<div class="divider col-sm-12 col-xs-12 col-md-12">
-			<div class="header-text"><span>开始使用</span></div>
-		</div>
-
-		<section class="blog">
-			<div class="item col-md-4">
-				<div class="blok-read-sm">
-					<a href="admin/login" class="hover-image">
-						<img src="<%= request.getContextPath() %>/static/public/img/admin.jpg" alt="image">
-						<span class="layer-block"></span>
-					</a>
-				</div>
-			</div>
-			<div class="item col-md-4">
-				<div class="blok-read-sm">
-					<a href="user/login" class="hover-image">
-						<img src="<%= request.getContextPath() %>/static/public/img/student.jpg" alt="image">
-						<span class="layer-block"></span>
-					</a>
-				</div>
-			</div>
-			<div class="item col-md-4">
-				<div class="blok-read-sm">
-					<a href="common/notice" class="hover-image">
-						<img src="<%= request.getContextPath() %>/static/public/img/notice.jpg" alt="image">
-						<span class="layer-block"></span>
-					</a>
-				</div>
-			</div>
-		</section>
-
 		<!-- ============FOOTER============= -->
 		<footer id="footer">
 			<div class="footer-content container">
