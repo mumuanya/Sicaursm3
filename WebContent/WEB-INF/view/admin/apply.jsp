@@ -91,8 +91,8 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel panel-heading">
-							<button class="btn btn-primary" name="refuseapply" disabled="disabled">拒绝</button>
-							<button class="btn btn-primary" name="passapply" disabled="disabled">同意</button>
+							<button class="btn btn-primary" name="refuseapply" disabled="disabled" onclick="refuseapply()">拒绝</button>
+							<button class="btn btn-primary" name="passapply" disabled="disabled" onclick="passapply()">同意</button>
 						</div>
 						<div class="panel-body">
 							<table data-toggle="table" id="applytable" data-show-refresh="true" data-show-toggle="true" data-single-select="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">

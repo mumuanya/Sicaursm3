@@ -98,7 +98,6 @@
 											<th data-field="description">描述</th>
 											<th data-field="state">状态</th>
 											<th data-field="position">位置</th>
-											<th data-field="borrower_id">借用者ID</th>
 										</tr>
 									</thead>
 								</table>

@@ -37,3 +37,53 @@ function openBtn() {
     $("button[name='refuseapply']").removeAttr('disabled');
     $("button[name='passapply']").removeAttr('disabled');
 }
+
+function refuseapply(){
+	
+	var rows = $('#applytable').bootstrapTable('getSelections');
+	
+	var id = $(rows).last()[0].id;
+	var borrowtype = $(rows).last()[0].borrowtype;
+	
+	$.ajax({
+        type:"post",
+        url:'apply/refuse/' + id,
+        async:true,
+        dataType:'json',
+        success:function(data){
+        	if(data.code === 1){
+        		alert("已拒绝申请")
+        		refreshVip();
+        		closeBtn();
+        	}
+        	else if(data.code === 0){
+        		alert("拒绝通过失败");
+        	}
+	    }
+	});
+}
+function passapply(){
+	var rows = $('#applytable').bootstrapTable('getSelections');
+	
+	var id = $(rows).last()[0].id;
+	var borrowtype = $(rows).last()[0].borrowtype;
+	$.ajax({
+        type:"post",
+        url:'apply/pass/' + id,
+        async:true,
+        dataType:'json',
+        data:{
+        	borrowtype:borrowtype
+        },
+        success:function(data){
+        	if(data.code === 1){
+        		alert("已通过审核");
+        		refreshVip();
+        		closeBtn();
+        	}
+        	else if(data.code === 0){
+        		alert("通过失败");
+        	}
+	    }
+	});
+}

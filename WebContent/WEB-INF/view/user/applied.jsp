@@ -90,16 +90,18 @@
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel panel-heading">
-								<button class="btn btn-primary" disabled="disabled">查看详细</button>
+								<button class="btn btn-primary" onclick="returnapply()" name="applyreturn" disabled="disabled">申请归还</button>
 							</div>
 							<div class="panel-body">
-								<table data-toggle="table"	id="appliedtable" data-pagination="true" data-search="true" data-show-refresh="true">
+								<table data-toggle="table"	id="appliedtable"  data-show-refresh="true" data-show-toggle="true" data-single-select="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
 									<thead>
 										<tr>
-											<th data-sortable="true" data-field="id">ID</th>
-											<th data-field="userid">用户ID</th>
+											<th data-checkbox="true" >选择</th>
+											<th data-sortable="true"  data-field="id"   data-visible="false">ID</th>
+											<th data-field="userid"   data-visible="false">用户ID</th>
 											<th data-field="borrowtype">借用类型</th>
-											<th data-field="tid">借用物品/场地ID</th>
+											<th data-field="itemfieldname">借用物品(场地)名</th>
+											<th data-field="tid"  data-visible="false">借用物品(场地)ID</th>
 											<th data-field="state">状态</th>
 											<th data-field="borrowreason">借用理由</th>
 											<th data-field="borrowtime">借用时间</th>

@@ -91,7 +91,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel panel-heading">
-							<button class="btn btn-primary" name="lookapplyrecord" disabled="disabled">查看详细</button>
+							<button class="btn btn-primary" name="lookapplyrecord" disabled="disabled" data-toggle="modal" data-target=".lookapplyrecord">查看详细</button>
 						</div>
 						<div class="panel-body">
 							<table data-toggle="table"	id="applyrecordtable" data-show-refresh="true" data-show-toggle="true" data-single-select="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
@@ -116,6 +116,29 @@
 			</div>
 			</div>
 		</div>
+		<!--以下是模态框  -->
+		<!--查看模态框  -->
+		<div class="modal fade lookapplyrecord" tabindex="-1" role="dialog" aria-labelledby="lookfieldModalLabel">
+		  <div class="modal-dialog modal-sm" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		       		查看历史借用申请
+		       </div>
+		       <div class="modal-body">
+		       		<div id="lookapplymodal" style="text-align:right;">
+		        		<label for="neckname">申请人姓名:</label><input type="text" name="neckname" id="neckname" value="" disabled="disabled"/>
+		        		<br /><label for="itemfieldname">借用:</label><input type="text" name="itemfieldname" id="itemfieldname" value="" disabled="disabled"/>
+		        		<br /><label for="borrowreason">理由:</label><input type="text" name="borrowreason" id="borrowreason" value="" disabled="disabled"/>
+		        		<br /><label for="borrowtime">借用时长:</label><input type="text" name="borrowtime" id="borrowtime" value="" disabled="disabled"/>
+		        	</div>
+		        </div>
+		        <div class="modal-footer">
+		        	<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		        </div>
+		    </div>
+		  </div>
+		</div>
+		<!--/查看模态框  -->
 		<script src="<%= request.getContextPath() %>/static/back/js/base/applyrecord.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

@@ -1,5 +1,6 @@
 package com.rk.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.rk.bean.ApplyBean;
 import com.rk.model.Apply;
 import com.rk.model.User;
 import com.rk.service.ApplyService;
+import com.rk.service.FieldService;
+import com.rk.service.ItemService;
+import com.rk.service.UserService;
 import com.rk.util.JsonResult;
 
 @RequestMapping(value= "/user/apply")
@@ -25,7 +30,14 @@ public class UserApplyController {
 	@Autowired
 	ApplyService applyservice;
 	
+	@Autowired
+	UserService userservice;
 	
+	@Autowired
+	ItemService itemservice;
+	
+	@Autowired
+	FieldService fieldservice;
 	/**
 	 * 提交申请
 	 * @param record
@@ -56,8 +68,25 @@ public class UserApplyController {
 		User user  = (User)session.getAttribute("user");
 		Integer id = user.getId();
 		List<Apply> list = applyservice.userGetAppling(id);
+		//处理state域
+		List<ApplyBean> list2 = new ArrayList<>();
+		ApplyBean ib = null;
+		for(Apply i: list) {
+			ib = new ApplyBean();
+			String username = (userservice.getUserById(i.getUserid())).getNeckname();
+			String itemfieldname = null;
+			if (i.getBorrowtype() == 0) {
+				// 场地
+				itemfieldname = fieldservice.selectById(i.getTid()).getName();
+			} else if (i.getBorrowtype() == 1) {
+				// 物品
+				itemfieldname = itemservice.selectById(i.getTid()).getName();
+			}
+			ib.setApply(i, username, itemfieldname);
+			list2.add(ib);
+		}
 		if(list != null) {
-			String jsonStr = JSON.toJSONString(list);
+			String jsonStr = JSON.toJSONString(list2);
 			System.out.println("[LOG] json data:" + jsonStr);
 			return jsonStr;
 		}else {
@@ -77,8 +106,25 @@ public class UserApplyController {
 		Integer id = user.getId();
 		System.out.println(id);
 		List<Apply> list = applyservice.userGetApplied(id);
+		//处理state域
+		List<ApplyBean> list2 = new ArrayList<>();
+		ApplyBean ib = null;
+		for(Apply i: list) {
+			ib = new ApplyBean();
+			String username = (userservice.getUserById(i.getUserid())).getNeckname();
+			String itemfieldname = null;
+			if (i.getBorrowtype() == 0) {
+				// 场地
+				itemfieldname = fieldservice.selectById(i.getTid()).getName();
+			} else if (i.getBorrowtype() == 1) {
+				// 物品
+				itemfieldname = itemservice.selectById(i.getTid()).getName();
+			}
+			ib.setApply(i, username, itemfieldname);
+			list2.add(ib);
+		}
 		if(list != null) {
-			String jsonStr = JSON.toJSONString(list);
+			String jsonStr = JSON.toJSONString(list2);
 			System.out.println("[LOG] json data:" + jsonStr);
 			return jsonStr;
 		}else {
@@ -97,8 +143,25 @@ public class UserApplyController {
 		User user  = (User)session.getAttribute("user");
 		Integer id = user.getId();
 		List<Apply> list = applyservice.userGetApph(id);
+		//处理state域
+		List<ApplyBean> list2 = new ArrayList<>();
+		ApplyBean ib = null;
+		for(Apply i: list) {
+			ib = new ApplyBean();
+			String username = (userservice.getUserById(i.getUserid())).getNeckname();
+			String itemfieldname = null;
+			if (i.getBorrowtype() == 0) {
+				// 场地
+				itemfieldname = fieldservice.selectById(i.getTid()).getName();
+			} else if (i.getBorrowtype() == 1) {
+				// 物品
+				itemfieldname = itemservice.selectById(i.getTid()).getName();
+			}
+			ib.setApply(i, username, itemfieldname);
+			list2.add(ib);
+		}
 		if(list != null) {
-			String jsonStr = JSON.toJSONString(list);
+			String jsonStr = JSON.toJSONString(list2);
 			System.out.println("[LOG] json data:" + jsonStr);
 			return jsonStr;
 		}else {
@@ -112,7 +175,7 @@ public class UserApplyController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value="/return/{id}",method = RequestMethod.PUT)
+	@RequestMapping(value="/return/{id}",method = RequestMethod.POST)
 	public String returnApply(@PathVariable("id") Integer id) {
 		
 		//没确认state是否为1

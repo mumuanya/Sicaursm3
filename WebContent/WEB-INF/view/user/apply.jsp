@@ -14,11 +14,18 @@
 		<!--一些自定义的样式-->
 		<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/static/front/css/styles.css"/>
 		<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/static/front/css/base/index.css"/>
+		<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/static/css/bootstrap-select.min.css"/>
 		<!--引入js-->
 		<script src="<%= request.getContextPath() %>/static/front/js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<%= request.getContextPath() %>/static/front/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<%= request.getContextPath() %>/static/front/js/bootstrap-table.js" type="text/javascript" charset="utf-8"></script>
-		<script src="<%= request.getContextPath() %>/static/front/js/base/public.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<%= request.getContextPath() %>/static/js/bootstrap-select.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.form-control{
+				display:inline-block;
+				width:220px;
+			}
+		</style>
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -54,7 +61,7 @@
 				<div id="collapseOne" class="accordion-body collapse" style="height: 0px; ">
 					<ul class="nav menu">
 						<li><a href="field" style="color: green;"><span class="glyphicon glyphicon-sunglasses"></span> 可用场地</a></li>
-						<li class="active"><a href="item" style="color: green;"><span class="glyphicon glyphicon-shopping-cart"></span> 可用物品</a></li>
+						<li><a href="item" style="color: green;"><span class="glyphicon glyphicon-shopping-cart"></span> 可用物品</a></li>
 					</ul>
 				</div>
 			</div>
@@ -90,7 +97,40 @@
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-body">
-								xxxxx这里是申请要填写的内容
+								<div class="row text-center" style="margin-bottom: 20px;">
+									<div class="col-lg-6">
+										<label for="borrowtype">借用类型：</label>
+										<select class="selectpicker" name="borrowtype">
+											<option selected="selected" disabled="disabled">请选择</option>
+											<option value="0">场地</option>
+											<option value="1">物品</option>
+										</select>
+									</div>
+									<div class="col-lg-6">
+										<label for="name">借用名称：</label>
+										<select class="selectpicker" name="name">
+											<option selected="selected" disabled="disabled">请选择</option>
+										</select>
+									</div>
+								</div>
+								<div class="row text-center"  style="margin-bottom: 20px;">
+									<div class="col-lg-6">
+										<label for="name">借用理由：</label>
+										<input class="form-control" type="text" name="borrowreason" id="borrowreason" value="" />
+									</div>
+									<div class="col-lg-6">
+										<label for="name">借用时长：</label>
+										<input class="form-control" type="number" name="borrowreason" id="borrowreason" value="" placeholder="输入借用天数"/>
+									</div>
+								</div>
+								<div class="row text-center">
+									<div class="col-lg-2 col-lg-offset-4">
+										<button type="button" class="btn btn-info">重新填写</button>
+									</div>
+									<div class="col-lg-2">
+										<button type="button" class="btn btn-success">提交申请</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
